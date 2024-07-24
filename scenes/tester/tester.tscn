@@ -1,0 +1,123 @@
+[gd_scene load_steps=11 format=3 uid="uid://dtvpbv17l077w"]
+
+[ext_resource type="Texture2D" uid="uid://cdrdummeq4ymj" path="res://assets/player/parrot.png" id="1_b7dfb"]
+[ext_resource type="Script" path="res://scenes/tester/Bird2.gd" id="2_k4dty"]
+[ext_resource type="Texture2D" uid="uid://b1prgbycm10r3" path="res://assets/env/elementStone025.png" id="2_mhdx1"]
+[ext_resource type="Script" path="res://scenes/tester/FpsCount.gd" id="3_21po2"]
+[ext_resource type="Texture2D" uid="uid://btsuu5n68m3hi" path="res://assets/env/elementWood015.png" id="5_so3ci"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8qx53"]
+bounce = 0.5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0bi7p"]
+radius = 36.0555
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aorwv"]
+size = Vector2(67.9998, 2036)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5g4uy"]
+size = Vector2(771, 26)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a5mn7"]
+radius = 19.0
+
+[node name="Tester" type="Node2D"]
+
+[node name="Bird" type="RigidBody2D" parent="."]
+position = Vector2(517, 104)
+physics_material_override = SubResource("PhysicsMaterial_8qx53")
+
+[node name="Sprite2D" type="Sprite2D" parent="Bird"]
+scale = Vector2(0.28, 0.28)
+texture = ExtResource("1_b7dfb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bird"]
+shape = SubResource("CircleShape2D_0bi7p")
+
+[node name="Bird2" type="RigidBody2D" parent="."]
+position = Vector2(579, 207)
+physics_material_override = SubResource("PhysicsMaterial_8qx53")
+script = ExtResource("2_k4dty")
+
+[node name="Sprite2D" type="Sprite2D" parent="Bird2"]
+scale = Vector2(0.28, 0.28)
+texture = ExtResource("1_b7dfb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bird2"]
+shape = SubResource("CircleShape2D_0bi7p")
+
+[node name="Timer" type="Timer" parent="Bird2"]
+wait_time = 2.0
+
+[node name="Label" type="Label" parent="Bird2"]
+offset_left = -28.0
+offset_top = -67.0
+offset_right = 32.0
+offset_bottom = -33.0
+theme_override_font_sizes/font_size = 24
+text = "False
+"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(533, 648)
+rotation = 1.5708
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+scale = Vector2(1, 10)
+texture = ExtResource("2_mhdx1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -78)
+shape = SubResource("RectangleShape2D_aorwv")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(0, 277)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2"]
+scale = Vector2(1, 10)
+texture = ExtResource("2_mhdx1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(0, -78)
+shape = SubResource("RectangleShape2D_aorwv")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(1151, 293)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D3"]
+scale = Vector2(1, 10)
+texture = ExtResource("2_mhdx1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(0, -78)
+shape = SubResource("RectangleShape2D_aorwv")
+
+[node name="FpsCount" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("3_21po2")
+
+[node name="plank" type="RigidBody2D" parent="."]
+rotation = -0.141372
+
+[node name="Sprite2D" type="Sprite2D" parent="plank"]
+position = Vector2(563, 560)
+scale = Vector2(3.55909, 0.414286)
+texture = ExtResource("5_so3ci")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="plank"]
+position = Vector2(563.5, 561)
+shape = SubResource("RectangleShape2D_5g4uy")
+
+[node name="Pivo" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Pivo"]
+position = Vector2(560, 593.638)
+scale = Vector2(0.15, 0.152821)
+texture = ExtResource("1_b7dfb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivo"]
+position = Vector2(560, 594)
+shape = SubResource("CircleShape2D_a5mn7")
+
+[connection signal="timeout" from="Bird2/Timer" to="Bird2" method="_on_timer_timeout"]

@@ -14,6 +14,11 @@ config/name="MadAnimals"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
 
+[display]
+
+window/dpi/allow_hidpi=false
+window/vsync/vsync_mode=0
+
 [rendering]
 
 renderer/rendering_method="mobile"
