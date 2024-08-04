@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://d1g6j4rqll4fh"]
+[gd_scene load_steps=8 format=3 uid="uid://d1g6j4rqll4fh"]
 
 [ext_resource type="Texture2D" uid="uid://cdrdummeq4ymj" path="res://assets/player/parrot.png" id="1_bker8"]
 [ext_resource type="Script" path="res://scenes/animal/animal.gd" id="1_gu4sy"]
 [ext_resource type="Texture2D" uid="uid://bi7nb186q62p6" path="res://assets/items/arrow.png" id="3_6ujm6"]
 [ext_resource type="AudioStream" uid="uid://xlpvymv5c8qk" path="res://assets/audio/stretch2.ogg" id="4_45wcm"]
 [ext_resource type="AudioStream" uid="uid://cou65yy3cdr67" path="res://assets/audio/catapult.ogg" id="5_wa22c"]
+[ext_resource type="AudioStream" uid="uid://bs7smxdg82cjm" path="res://assets/audio/kick_wood.ogg" id="6_76lia"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3ih34"]
 radius = 20.0
@@ -12,6 +13,8 @@ radius = 20.0
 [node name="Animal" type="RigidBody2D"]
 input_pickable = true
 freeze = true
+max_contacts_reported = 1
+contact_monitor = true
 script = ExtResource("1_gu4sy")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -20,10 +23,6 @@ texture = ExtResource("1_bker8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_3ih34")
-
-[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
-position = Vector2(-1.19209e-06, 9.53674e-07)
-scale = Vector2(2, 2)
 
 [node name="Arrow" type="Sprite2D" parent="."]
 scale = Vector2(0.3, 0.3)
@@ -36,5 +35,13 @@ stream = ExtResource("4_45wcm")
 [node name="Launch" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_wa22c")
 
+[node name="Kick" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_76lia")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(-1.19209e-06, 9.53674e-07)
+scale = Vector2(2, 2)
+
 [connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="sleeping_state_changed" from="." to="." method="_on_sleeping_state_changed"]
 [connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

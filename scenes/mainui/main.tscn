@@ -1,0 +1,81 @@
+[gd_scene load_steps=6 format=3 uid="uid://bfwr7w2ocdabc"]
+
+[ext_resource type="Texture2D" uid="uid://bmh04glvenjsq" path="res://assets/env/MainBG.png" id="1_koy63"]
+[ext_resource type="PackedScene" uid="uid://cgv41ywh1slb0" path="res://scenes/level_button/level_button.tscn" id="2_kj2ra"]
+[ext_resource type="FontFile" uid="uid://bwhhl5c7cjvhe" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="3_4dqof"]
+[ext_resource type="AudioStream" uid="uid://cx5v3egue6st1" path="res://assets/audio/birdsong.wav" id="4_h6hs7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vo1ks"]
+font = ExtResource("3_4dqof")
+font_size = 128
+font_color = Color(0.148957, 0.285454, 0.591272, 1)
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 0.313726)
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_koy63")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 32
+
+[node name="LevelButton" parent="HBoxContainer" instance=ExtResource("2_kj2ra")]
+layout_mode = 2
+
+[node name="LevelButton2" parent="HBoxContainer" instance=ExtResource("2_kj2ra")]
+layout_mode = 2
+level_number = 2
+
+[node name="LevelButton3" parent="HBoxContainer" instance=ExtResource("2_kj2ra")]
+layout_mode = 2
+level_number = 3
+
+[node name="MC" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -397.0
+offset_right = 397.0
+offset_bottom = 128.0
+grow_horizontal = 2
+rotation = 0.0523599
+theme_override_constants/margin_top = 24
+
+[node name="Title" type="Label" parent="MC"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "MAD ANIMALS"
+label_settings = SubResource("LabelSettings_vo1ks")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_h6hs7")
+volume_db = -10.0
+autoplay = true

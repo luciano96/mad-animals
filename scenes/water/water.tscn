@@ -17,11 +17,11 @@ texture = ExtResource("1_ucof7")
 region_enabled = true
 region_rect = Rect2(0, 0, 1200, 128)
 
+[node name="Splash" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_xxuur")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(575, 64)
 shape = SubResource("RectangleShape2D_k07tn")
-
-[node name="Splash" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_xxuur")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
