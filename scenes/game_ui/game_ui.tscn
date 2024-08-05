@@ -66,7 +66,7 @@ size_flags_vertical = 4
 
 [node name="Complete" type="Label" parent="MarginContainer/VBoxContainer2"]
 layout_mode = 2
-text = "Label Complete"
+text = "Level Complete"
 label_settings = SubResource("LabelSettings_nb7vq")
 
 [node name="PressSpace" type="Label" parent="MarginContainer/VBoxContainer2"]
